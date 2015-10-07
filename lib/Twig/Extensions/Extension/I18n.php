@@ -10,6 +10,14 @@
  */
 class Twig_Extensions_Extension_I18n extends Twig_Extension
 {
+    public static $textDomain;
+
+    public function __construct($textDomain = 'default') {
+        parent::__construct();
+
+        Twig_Extensions_Extension_I18n::$textDomain = $textDomain;
+    }
+
     /**
      * Returns the token parser instances to add to the existing list.
      *
@@ -28,7 +36,9 @@ class Twig_Extensions_Extension_I18n extends Twig_Extension
     public function getFilters()
     {
         return array(
-             new Twig_SimpleFilter('trans', 'gettext'),
+             new Twig_SimpleFilter('trans', function($input) {
+                return __($input, Twig_Extensions_Extension_I18n::$textDomain);
+             }),
         );
     }
 

@@ -38,7 +38,7 @@ class Twig_Extensions_Node_Trans extends Twig_Node
             $vars = array_merge($vars, $vars1);
         }
 
-        $function = null === $this->getNode('plural') ? 'gettext' : 'ngettext';
+        $function = null === $this->getNode('plural') ? '__' : '_n';
 
         if (null !== $notes = $this->getNode('notes')) {
             $message = trim($notes->getAttribute('data'));
@@ -60,7 +60,7 @@ class Twig_Extensions_Node_Trans extends Twig_Node
                     ->subcompile($msg1)
                     ->raw(', abs(')
                     ->subcompile($this->getNode('count'))
-                    ->raw(')')
+                    ->raw(', Twig_Extensions_Extension_I18n::$textDomain)')
                 ;
             }
 
@@ -97,7 +97,7 @@ class Twig_Extensions_Node_Trans extends Twig_Node
                     ->subcompile($msg1)
                     ->raw(', abs(')
                     ->subcompile($this->getNode('count'))
-                    ->raw(')')
+                    ->raw(', Twig_Extensions_Extension_I18n::$textDomain)')
                 ;
             }
 
