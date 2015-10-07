@@ -60,11 +60,11 @@ class Twig_Extensions_Node_Trans extends Twig_Node
                     ->subcompile($msg1)
                     ->raw(', abs(')
                     ->subcompile($this->getNode('count'))
-                    ->raw(', Twig_Extensions_Extension_I18n::$textDomain)')
+                    ->raw(')')
                 ;
             }
 
-            $compiler->raw('), array(');
+            $compiler->raw(', Twig_Extensions_Extension_I18n::$textDomain), array(');
 
             foreach ($vars as $var) {
                 if ('count' === $var->getAttribute('name')) {
@@ -97,11 +97,11 @@ class Twig_Extensions_Node_Trans extends Twig_Node
                     ->subcompile($msg1)
                     ->raw(', abs(')
                     ->subcompile($this->getNode('count'))
-                    ->raw(', Twig_Extensions_Extension_I18n::$textDomain)')
+                    ->raw(')')
                 ;
             }
 
-            $compiler->raw(");\n");
+            $compiler->raw(", Twig_Extensions_Extension_I18n::\$textDomain);\n");
         }
     }
 
