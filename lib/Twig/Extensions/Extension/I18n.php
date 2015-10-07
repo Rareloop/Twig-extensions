@@ -13,8 +13,6 @@ class Twig_Extensions_Extension_I18n extends Twig_Extension
     public static $textDomain;
 
     public function __construct($textDomain = 'default') {
-        parent::__construct();
-
         Twig_Extensions_Extension_I18n::$textDomain = $textDomain;
     }
 
